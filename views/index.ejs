@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../public/style.css" />
+</head>
+<body>
+    hi <%= locals.bebra || 'something missing' %>
+
+    <% for (var i = 0; i < locals.arr.length; i++) { %>
+        <div class="spending-element">        
+
+            <div class="element-amount">
+                300 bucks
+            </div>
+            <div class="element-header">
+                food
+            </div>
+            
+            <br><br><br>
+            <div class="element-comment">
+                <% if (locals.arr[i] === "Saab") { %>
+                    <img src="../public/s.jpg"  >
+                    i am saaab manasdsadsadasdasdas
+                    asdas
+                    i am saaab manasdsadsadasdasdas
+                    asdasi am saaab manasdsadsadasdasdas
+                    asdas
+                    i am saaab manasdsadsadasdasdas
+                    asdas
+                <% } %>
+                <li> <%= arr[i] %> </li>
+            </div>
+
+        </div>
+
+    <% } %>
+</body>
+</html>
