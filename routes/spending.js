@@ -7,21 +7,17 @@ const helper = require('./helper');
 const price = Dinero({ amount: 5000, currency: 'USD' })
 
 let list = [
-    { amount: Dinero({amount: 10000,currency: 'USD'}).toFormat('$0,00'), type: "food", comments: "cola pizza burgir" },
-    { amount: Dinero({amount: 30000,currency: 'USD'}).toFormat('$0,00'), type: "gym", comments: "gachi is life"  },
-    { amount: Dinero({amount: 300,currency: 'USD'}).toFormat('$0,00'), type: "coke", comments: "mmm delicious"  }
+    { amount: Dinero({amount: 10000,currency: 'USD'}), type: "food", comments: "cola pizza burgir" },
+    { amount: Dinero({amount: 30000,currency: 'USD'}), type: "gym", comments: "gachi is life"  },
+    { amount: Dinero({amount: 300,currency: 'USD'}), type: "coke", comments: "mmm delicious"  }
     ]; 
 
-let limits = {
-    dailyLimit: 100,
-    weeklyLimit: 700,
-    monthlyLimit: 2100,
-    yearlyLimit: 25000
-}
-let limit = 123;
+let dailyLimit = Dinero({amount: 10000,currency: 'USD'});
+let limits = helper.setLimitsFromDaily(dailyLimit)
+
 let params = {
     list,
-    limit, 
+    limits, 
     helper
 }
 

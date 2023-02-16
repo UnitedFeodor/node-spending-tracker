@@ -1,4 +1,4 @@
-const { dinero } = require('dinero.js');
+const Dinero = require('dinero.js')
 
 /*
     1 = 100    is 10^2
@@ -18,33 +18,36 @@ function parseUSDFromFormattedString(moneyStr) {
     }
 
     let centsInt = parseInt(moneyAmountStr)*100
-    let resultUSD = dinero({amount: centsInt, currency: USD})
+    let resultUSD = Dinero({amount: centsInt, currency: 'USD'})
     return resultUSD
+   
+}
 
-    
-    
+function dineroToFormatWrapperUSD(amount) {
+    return amount.toFormat('$0,00')
 }
 
 function calculateTotalSpendings(spendingsList) {
     console.log("calculateTotalSpendings")
-    let result = 0
+    let result = Dinero({amount: 0, currency: 'USD'})
     spendingsList.forEach(element => {
         
-        result+= element.amount;
-        console.log("result foreach: " + result)
+        result = result.add(element.amount);
+        console.log("result foreach el amount: " + element.amount.getAmount())
+        console.log("result foreach res amount: " + result.getAmount())
     });
     return result;
 }
 
 function checkLimit(currentSpendings , limit) {
     console.log("checkLimit")
-    let exceeding = currentSpendings - limit
+    let exceeding = currentSpendings.subtract(limit)
     let exceedingBelowStr;
-    if (exceeding < 0) {
-        exceedingBelowStr = `below by ${exceeding}`
-    } else if (exceeding > 0) {
-        exceedingBelowStr = `exceeding by ${exceeding}`
-    } else if (exceeding == 0) {
+    if (exceeding.lessThan(Dinero({ amount: 0 }))) {
+        exceedingBelowStr = `below by ${exceeding.toFormat('$0,00')}`
+    } else if (exceeding.greaterThan(Dinero({ amount: 0 }))) {
+        exceedingBelowStr = `exceeding by ${exceeding.toFormat('$0,00')}`
+    } else if (exceeding.equalsTo(Dinero({ amount: 0 }))) {
         exceedingBelowStr = `reached`
     }
 
@@ -59,9 +62,9 @@ function setLimitsFromDaily(dailyLimit) {
     console.log("setDailyLimitAndCalculateOthers")
     return limits = {
         dailyLimit: dailyLimit,
-        weeklyLimit: dailyLimit*7,
-        monthlyLimit: dailyLimit*30,
-        yearlyLimit: dailyLimit*365
+        weeklyLimit: dailyLimit.multiply(7),
+        monthlyLimit: dailyLimit.multiply(30),
+        yearlyLimit: dailyLimit.multiply(365)
     }
 }
 
@@ -79,6 +82,8 @@ function setLimitsFromMonthly(monthlyLimit) {
 
 
 module.exports = {
+    dineroToFormatWrapperUSD : dineroToFormatWrapperUSD,
     checkLimit: checkLimit,
-    calculateTotalSpendings: calculateTotalSpendings
+    calculateTotalSpendings: calculateTotalSpendings,
+    setLimitsFromDaily : setLimitsFromDaily
 }

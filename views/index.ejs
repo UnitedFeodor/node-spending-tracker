@@ -9,11 +9,11 @@
 </head>
 <body>
 
-    <%=    "Limit:" + locals.limit +";  " %> 
+    <%=    "Limit:" + helper.dineroToFormatWrapperUSD(locals.limits.dailyLimit) +";  " %> 
     <%  const totalSpendings = helper.calculateTotalSpendings(locals.list) 
-        console.log("total spendings: " + totalSpendings)
+        console.log("total spendings: " + totalSpendings.getAmount())
             %>
-    <%=    helper.checkLimit(totalSpendings,locals.limit) %> 
+    <%=    helper.checkLimit(totalSpendings,locals.limits.dailyLimit) %> 
     
 
     <div class="spending-element-margins" >
@@ -28,7 +28,7 @@
         <div class="spending-element">        
 
             <div class="element-amount">
-                <%= list[i].amount%>
+                <%= helper.dineroToFormatWrapperUSD(list[i].amount) %>
             </div>
             <div class="element-header">
                 <%= list[i].type %>
