@@ -10,6 +10,9 @@
 <body>
     hi <%= locals.bebra || 'something missing' %>
 
+    <div class="add-new-element">
+        <a href="/add"><button class="add-button">ADD NEW SPENDINGS</button></a>
+    </div>
     <% for (var i = 0; i < locals.arr.length; i++) { %>
         <div class="spending-element">        
 
@@ -32,7 +35,7 @@
                     i am saaab manasdsadsadasdasdas
                     asdas
                 <% } %>
-                <li> <%= arr[i] %> </li>
+                <%= arr[i] %>
             </div>
 
         </div>

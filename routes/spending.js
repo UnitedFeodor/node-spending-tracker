@@ -5,8 +5,8 @@ router.get('/',(req,res) => {
     res.render('index',{bebra: 'task list',arr: ["Saab", "Volvo", "BMW"]})
 })
 
-router.get('/new',(req,res) => {
-    res.send(`new task}`)
+router.get('/add',(req,res) => {
+    res.render('add')
 })
 
 router.get('/:id',(req,res) => {
