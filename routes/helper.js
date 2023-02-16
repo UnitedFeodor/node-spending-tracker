@@ -1,4 +1,5 @@
 function calculateTotalSpendings(spendingsList) {
+    console.log("calculateTotalSpendings")
     let result = 0
     spendingsList.forEach(element => {
         
@@ -8,8 +9,7 @@ function calculateTotalSpendings(spendingsList) {
     return result;
 }
 
-function checkLimit(currentSpendings,limit) {
-    //function body
+function checkLimit(currentSpendings , limit) {
     console.log("checkLimit")
     let exceeding = currentSpendings - limit
     let exceedingBelowStr;
@@ -21,15 +21,33 @@ function checkLimit(currentSpendings,limit) {
         exceedingBelowStr = `reached`
     }
 
-    let resultStr = `Spending limit for today: ${exceedingBelowStr}`
+    let resultStr = `${exceedingBelowStr}`
     
 
     return resultStr
 }
-function common2(key) {
-    //function body
-    console.log("common2")
+
+// TODO find a way to fix months  
+function setLimitsFromDaily(dailyLimit) { 
+    console.log("setDailyLimitAndCalculateOthers")
+    return limits = {
+        dailyLimit: dailyLimit,
+        weeklyLimit: dailyLimit*7,
+        monthlyLimit: dailyLimit*30,
+        yearlyLimit: dailyLimit*365
+    }
 }
+
+function setLimitsFromMonthly(monthlyLimit) {
+    console.log("setDailyLimitAndCalculateOthers")
+    return limits = {
+        dailyLimit: Math.floor(monthlyLimit/30),
+        weeklyLimit:  Math.floor(monthlyLimit/30*7),
+        monthlyLimit: monthlyLimit,
+        yearlyLimit: Math.floor(monthlyLimit/30*365),
+    }
+}
+
 module.exports = {
     checkLimit: checkLimit,
     calculateTotalSpendings: calculateTotalSpendings

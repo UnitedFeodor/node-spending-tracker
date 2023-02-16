@@ -9,8 +9,18 @@ let list = [
     { amount: 3, type: "coke", comments: "mmm delicious"  }
     ];
 
+let limits = {
+    dailyLimit: 100,
+    weeklyLimit: 700,
+    monthlyLimit: 2100,
+    yearlyLimit: 25000
+}
 let limit = 123;
-let params = {bebra: 'bebra',list, limit, helper:helper}
+let params = {
+            list,
+            limit, 
+            helper
+}
 
 function addNewSpending(amount,type,comments) {
     let entry = {amount,type,comments}
@@ -32,8 +42,9 @@ router.get('/add',(req,res) => {
 router.post('/add',(req,res) => {
     console.log("post /add")
 
-    req.body.p
-    const amount = req.body.amount;
+    
+
+    const amount = parseInt(req.body.amount);
     console.log(amount)
     const spendingType = req.body.type;
     console.log(spendingType) 
