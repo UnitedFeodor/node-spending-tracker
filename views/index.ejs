@@ -9,11 +9,12 @@
 </head>
 <body>
 
-    
+    <%=    "Limit:" + locals.limit +";  " %> 
     <%  const totalSpendings = helper.calculateTotalSpendings(locals.list) 
         console.log("total spendings: " + totalSpendings)
             %>
     <%=    helper.checkLimit(totalSpendings,locals.limit) %> 
+    
 
     <div class="spending-element-margins" >
         <div class="add-new-element">

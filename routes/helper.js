@@ -1,8 +1,11 @@
 function calculateTotalSpendings(spendingsList) {
     let result = 0
     spendingsList.forEach(element => {
+        
         result+= element.amount;
+        console.log("result foreach: " + result)
     });
+    return result;
 }
 
 function checkLimit(currentSpendings,limit) {
