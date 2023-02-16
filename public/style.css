@@ -1,15 +1,33 @@
 .add-new-element {
-    margin: auto;
-    width: 50%;
+    
     overflow: auto;
-    padding: 10px;
     display: block;
+    
 }
 
+label {
+    margin-bottom: 0px;
+}
+
+input {
+    -webkit-text-fill-color: brown; 
+    
+}
 input[type=text] {
-    -webkit-text-fill-color: brown;
+
     border-radius: 4px;
     height: 30px;
+    top:0px;
+
+    
+}
+input[type=submit] {
+    border-radius: 4px;
+    border: 3px solid wheat;
+    background-color: wheat;
+    height: 40px;
+    padding: 10px 40px;
+    
 
     
 }
@@ -31,8 +49,11 @@ textarea {
     -webkit-text-fill-color: wheat;
     border: 3px solid wheat;
     border-radius: 4px;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: x-large;
+    min-height: 15px;
+    padding: 0px 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+    
 }
 button:hover {
 	background: wheat;
@@ -41,7 +62,17 @@ button:hover {
 	box-shadow: inset 0 0 0 3px brown;
 }
 
+.spending-element-margins {
+    margin: auto;
+    width: 50%;
+    overflow: auto;
+    border: 0px solid wheat;
+    margin-bottom: 10px;
+    display: block;
+}
+
 .spending-element {
+    position: relative;
     margin: auto;
     width: 50%;
     border: 3px solid wheat;
@@ -49,6 +80,7 @@ button:hover {
     -webkit-text-fill-color: wheat;
     font-family:Arial, Helvetica, sans-serif;
     overflow: auto;
+    margin-bottom: 10px;
     padding: 10px;
     display: block;
 }
@@ -75,10 +107,12 @@ button:hover {
 
 .element-header {
     margin-left: 10px;
-    display: block;
+    display:block
 }
 
+
 .element-comment {
+    margin: auto;
     display: block;
     border: 3px wheat ;
     width: 100%;

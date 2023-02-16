@@ -8,29 +8,28 @@
     <link rel="stylesheet" type="text/css" href="../public/style.css" />
 </head>
 <body>
-    hi <%= locals.bebra || 'something missing' %>
 
-    <form>
+    <form method="post">
         <div class="spending-element">        
 
             <div class="element-amount">
                 <label> AMOUNT </label>
-                <input style="" type="text">
+                <input type="text" name="amount">
             
             </div>
             <div class="element-header">
                 <label> SPENDING TYPE </label>
-                <input type="text">
+                <input type="text" name="type">
             
             </div>
             
-            <br><br><br>
             <div class="element-comment">
                 <label> COMMENTS </label>
-                    <textarea></textarea>
+                    <textarea name="comments"></textarea>
 
             </div>
 
+            <input type="submit" value="SAVE">
         </div>
 
     </form>

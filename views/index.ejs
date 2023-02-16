@@ -8,24 +8,35 @@
     <link rel="stylesheet" type="text/css" href="../public/style.css" />
 </head>
 <body>
-    hi <%= locals.bebra || 'something missing' %>
 
-    <div class="add-new-element">
-        <a href="/add"><button class="add-button">ADD NEW SPENDINGS</button></a>
+    
+    <%  const totalSpendings = helper.calculateTotalSpendings(locals.list) 
+        console.log("total spendings: " + totalSpendings)
+            %>
+    <%=    helper.checkLimit(totalSpendings,locals.limit) %> 
+
+    <div class="spending-element-margins" >
+        <div class="add-new-element">
+            <a href="/add"><button class="add-button">ADD NEW SPENDINGS</button></a>
+        </div>
     </div>
-    <% for (var i = 0; i < locals.arr.length; i++) { %>
+
+    
+
+    <% for (var i = 0; i < locals.list.length; i++) { %>
         <div class="spending-element">        
 
             <div class="element-amount">
-                300 bucks
+                <%= list[i].amount %>
             </div>
             <div class="element-header">
-                food
+                <%= list[i].type %>
             </div>
             
             <br><br><br>
             <div class="element-comment">
-                <% if (locals.arr[i] === "Saab") { %>
+                 <!--
+                <%# if (locals.list[i] === "BMW") { %>
                     <img src="../public/s.jpg"  >
                     i am saaab manasdsadsadasdasdas
                     asdas
@@ -33,9 +44,9 @@
                     asdasi am saaab manasdsadsadasdasdas
                     asdas
                     i am saaab manasdsadsadasdasdas
-                    asdas
-                <% } %>
-                <%= arr[i] %>
+                    asdas -->
+                <%# } %>
+                <%= list[i].comments %>
             </div>
 
         </div>
