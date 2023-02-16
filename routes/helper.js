@@ -1,4 +1,5 @@
 const Dinero = require('dinero.js')
+const e = require('express')
 
 /*
     1 = 100    is 10^2
@@ -39,11 +40,16 @@ function calculateTotalSpendings(spendingsList) {
     return result;
 }
 
+function dineroInvertSign(dineroNum) {
+    return Dinero({ amount: -dineroNum.getAmount(),currency: dineroNum.getCurrency() })    
+}
+
 function checkLimit(currentSpendings , limit) {
     console.log("checkLimit")
     let exceeding = currentSpendings.subtract(limit)
     let exceedingBelowStr;
     if (exceeding.lessThan(Dinero({ amount: 0 }))) {
+        exceeding = dineroInvertSign(exceeding)
         exceedingBelowStr = `below by ${exceeding.toFormat('$0,00')}`
     } else if (exceeding.greaterThan(Dinero({ amount: 0 }))) {
         exceedingBelowStr = `exceeding by ${exceeding.toFormat('$0,00')}`

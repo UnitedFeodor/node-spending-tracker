@@ -12,7 +12,7 @@ let list = [
     { amount: Dinero({amount: 300,currency: 'USD'}), type: "coke", comments: "mmm delicious"  }
     ]; 
 
-let dailyLimit = Dinero({amount: 10000,currency: 'USD'});
+let dailyLimit = Dinero({amount: 100000,currency: 'USD'});
 let limits = helper.setLimitsFromDaily(dailyLimit)
 
 let params = {
