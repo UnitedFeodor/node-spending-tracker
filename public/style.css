@@ -110,6 +110,11 @@ button:hover {
     display:block
 }
 
+#element-date {
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: smaller;
+    border: none;
+}
 
 .element-comment {
     margin: auto;

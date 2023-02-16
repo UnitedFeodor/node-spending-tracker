@@ -7,9 +7,9 @@ const helper = require('./helper');
 const price = Dinero({ amount: 5000, currency: 'USD' })
 
 let list = [
-    { amount: Dinero({amount: 10000,currency: 'USD'}), type: "food", comments: "cola pizza burgir" },
-    { amount: Dinero({amount: 30000,currency: 'USD'}), type: "gym", comments: "gachi is life"  },
-    { amount: Dinero({amount: 300,currency: 'USD'}), type: "coke", comments: "mmm delicious"  }
+    { amount: Dinero({amount: 10000,currency: 'USD'}), type: "food", comments: "cola pizza burgir", date: new Date() },
+    { amount: Dinero({amount: 30000,currency: 'USD'}), type: "gym", comments: "gachi is life" , date: new Date() },
+    { amount: Dinero({amount: 300,currency: 'USD'}), type: "coke", comments: "mmm delicious" , date: new Date() }
     ]; 
 
 let dailyLimit = Dinero({amount: 100000,currency: 'USD'});
@@ -21,8 +21,8 @@ let params = {
     helper
 }
 
-function addNewSpending(amount,type,comments) {
-    let entry = {amount,type,comments}
+function addNewSpending(amount,type,comments,date) {
+    let entry = {amount,type,comments,date}
     
     params.list.push(entry)
 }
@@ -43,12 +43,14 @@ router.post('/add',(req,res) => {
     console.log(req.body.amount + " = req body amount")
 
     const amount = helper.parseUSDFromFormattedString(req.body.amount)
-    console.log(amount)
+    console.log(amount.getAmount() + amount.getCurrency())
     const spendingType = req.body.type;
     console.log(spendingType) 
     const comments = req.body.comments;
     console.log(comments)
-    addNewSpending(amount, spendingType, comments )
+    const date = new Date()
+    console.log("date " + date)
+    addNewSpending(amount, spendingType, comments, date)
     res.redirect('/')
 })
 
