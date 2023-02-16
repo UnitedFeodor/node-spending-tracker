@@ -40,10 +40,9 @@ router.get('/add',(req,res) => {
 
 router.post('/add',(req,res) => {
     console.log("post /add")
+    console.log(req.body.amount + " = req body amount")
 
-    
-
-    const amount = parseInt(req.body.amount);
+    const amount = helper.parseUSDFromFormattedString(req.body.amount)
     console.log(amount)
     const spendingType = req.body.type;
     console.log(spendingType) 

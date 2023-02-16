@@ -85,5 +85,6 @@ module.exports = {
     dineroToFormatWrapperUSD : dineroToFormatWrapperUSD,
     checkLimit: checkLimit,
     calculateTotalSpendings: calculateTotalSpendings,
-    setLimitsFromDaily : setLimitsFromDaily
+    setLimitsFromDaily : setLimitsFromDaily,
+    parseUSDFromFormattedString : parseUSDFromFormattedString
 }
