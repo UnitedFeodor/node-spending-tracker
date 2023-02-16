@@ -79,7 +79,6 @@ function setLimitsFromMonthly(monthlyLimit) {
 
 
 module.exports = {
-    params : params,
     checkLimit: checkLimit,
     calculateTotalSpendings: calculateTotalSpendings
 }

@@ -1,13 +1,16 @@
 const express = require('express')
+const Dinero = require('dinero.js')
 const router = express.Router()
 
-var helper = require('./helper');
+const helper = require('./helper');
+
+const price = Dinero({ amount: 5000, currency: 'USD' })
 
 let list = [
-    { amount: 100, type: "food", comments: "cola pizza burgir" },
-    { amount: 300, type: "gym", comments: "gachi is life"  },
-    { amount: 3, type: "coke", comments: "mmm delicious"  }
-    ];
+    { amount: Dinero({amount: 10000,currency: 'USD'}).toFormat('$0,00'), type: "food", comments: "cola pizza burgir" },
+    { amount: Dinero({amount: 30000,currency: 'USD'}).toFormat('$0,00'), type: "gym", comments: "gachi is life"  },
+    { amount: Dinero({amount: 300,currency: 'USD'}).toFormat('$0,00'), type: "coke", comments: "mmm delicious"  }
+    ]; 
 
 let limits = {
     dailyLimit: 100,
@@ -17,9 +20,9 @@ let limits = {
 }
 let limit = 123;
 let params = {
-            list,
-            limit, 
-            helper
+    list,
+    limit, 
+    helper
 }
 
 function addNewSpending(amount,type,comments) {
@@ -36,7 +39,7 @@ router.get('/',(req,res) => {
 router.get('/add',(req,res) => {
     console.log("get /add")
      
-    res.render('add',params)
+    res.render('add', params)
 })
 
 router.post('/add',(req,res) => {
