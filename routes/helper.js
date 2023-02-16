@@ -1,3 +1,30 @@
+const { dinero } = require('dinero.js');
+
+/*
+    1 = 100    is 10^2
+    2.5 = 250  is 10^2
+    3.34 = 334 is 10^2
+*/
+function parseUSDFromFormattedString(moneyStr) { 
+    let arr = moneyStr.split(".")
+    let moneyAmountStr
+    let afterDotSymbols
+    if (arr.length === 1) {
+        afterDotSymbols = 1
+        moneyAmountStr = arr[0] // no . in input
+    } else {
+        afterDotSymbols = arr[1].length // after dot symbol amount to multiply
+        moneyAmountStr = arr.join('')
+    }
+
+    let centsInt = parseInt(moneyAmountStr)*100
+    let resultUSD = dinero({amount: centsInt, currency: USD})
+    return resultUSD
+
+    
+    
+}
+
 function calculateTotalSpendings(spendingsList) {
     console.log("calculateTotalSpendings")
     let result = 0
@@ -48,7 +75,11 @@ function setLimitsFromMonthly(monthlyLimit) {
     }
 }
 
+
+
+
 module.exports = {
+    params : params,
     checkLimit: checkLimit,
     calculateTotalSpendings: calculateTotalSpendings
 }
