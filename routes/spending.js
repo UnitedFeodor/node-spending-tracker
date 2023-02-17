@@ -6,7 +6,7 @@ const multer  = require("multer");
 //router.use(multer({dest:"uploads"}).single("filedata"));
 
 
-const helper = require('./helper');
+const helper = require('../model/helper'); 
 
 
 let list = [

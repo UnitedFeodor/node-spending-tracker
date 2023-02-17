@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="../public/style.css" />
+    <script type="text/javascript" src="../public/validation.js"></script>
 </head>
 <body>
 
-    <form method="post">
+    <form method="post" name="limitsForm" enctype="multipart/form-data" onsubmit="return validateLimitsForm()">
         <div class="spending-element" id="limit-spending-element">        
 
             <div class="element-amount">

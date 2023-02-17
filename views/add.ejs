@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="../public/style.css" />
+    <script type="text/javascript" src="../public/validation.js"></script>
+
 </head>
 <body>
 
-    <form method="post" enctype="multipart/form-data">
+    <form name="addForm" method="post" enctype="multipart/form-data" onsubmit="return validateSpendingForm()">
         <div class="spending-element">        
 
             <div class="element-amount">
