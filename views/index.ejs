@@ -8,17 +8,27 @@
     <link rel="stylesheet" type="text/css" href="../public/style.css" />
 </head>
 <body>
+ 
+    <div class="limits-info" >
+        <div class="all-limits">
+            <div><%= "Daily Limit:" + helper.dineroToFormatWrapperUSD(locals.limits.dailyLimit) %> </div>
+            <div><%= "Weekly Limit:" + helper.dineroToFormatWrapperUSD(locals.limits.weeklyLimit) %> </div>
+            <div><%= "Monthly Limit:" + helper.dineroToFormatWrapperUSD(locals.limits.monthlyLimit) %> </div>
+            <div><%=  "Yearly Limit:" + helper.dineroToFormatWrapperUSD(locals.limits.yearlyLimit)%> </div>   
+        </div>
 
-    <%=    "Limit:" + helper.dineroToFormatWrapperUSD(locals.limits.dailyLimit) +";  " %> 
-    <%  const totalSpendings = helper.calculateTotalSpendings(locals.list) 
-        console.log("total spendings: " + totalSpendings.getAmount())
-            %>
-    <%=    helper.checkLimit(totalSpendings,locals.limits.dailyLimit) %> 
-    
+        <div class="all-limits" id="spendings">
+            <div>    <%  const totalSpendings = helper.calculateTotalSpendings(locals.list)  %>
+                <%= "Spent in total: " +helper.dineroToFormatWrapperUSD(totalSpendings) + " " %> </div>
+            <div> <%=    helper.checkLimit(totalSpendings,locals.limits.dailyLimit) %> </div>
+        </div>
+    </div>
+
 
     <div class="spending-element-margins" >
         <div class="add-new-element">
             <a href="/add"><button class="add-button">ADD NEW SPENDINGS</button></a>
+            <a href="/limits"><button id="limits-button" class="add-button">CHANGE LIMITS</button></a>
         </div>
     </div>
 

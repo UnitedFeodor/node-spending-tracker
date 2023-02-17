@@ -13,7 +13,7 @@ let list = [
     ]; 
 
 let dailyLimit = Dinero({amount: 100000,currency: 'USD'});
-let limits = helper.setLimitsFromDaily(dailyLimit)
+let limits = helper.setLimitsFromDaily(dailyLimit,3,2023)
 
 let params = {
     list,
@@ -53,6 +53,25 @@ router.post('/add',(req,res) => {
     addNewSpending(amount, spendingType, comments, date)
     res.redirect('/')
 })
+
+router.get('/limits',(req,res) => {
+    console.log("get /limits")
+     
+    res.render('limits', params)
+})
+
+router.post('/limits',(req,res) => {
+    console.log("post /limits")
+    const amount = helper.parseUSDFromFormattedString(req.body.amount)
+    console.log(amount.getAmount() + amount.getCurrency())
+    const limitType = req.body.type;
+    console.log(limitType)
+    const currDate = new Date()
+    const newLimits = helper.chooseLimitFuncByInput(limitType,amount,currDate.getMonth()+1,currDate.getFullYear())
+    params.limits = newLimits
+    res.redirect('/')
+})
+
 
 router.get('/:id',(req,res) => {
     res.send(`get task with id ${req.params.id}`)
