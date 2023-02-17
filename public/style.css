@@ -53,6 +53,12 @@ input[type=submit] {
 
     
 }
+input[type=file] {
+    
+    background-color: white;
+    margin-bottom: 10px;
+    
+}
 
 textarea {
     width: 100%;

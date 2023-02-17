@@ -25,10 +25,10 @@ function parseUSDFromFormattedString(moneyStr) {
     let multiplier = Math.pow(10, 2-afterDotSymbols)
 
     let centsInt = parseInt(moneyAmountStr)*multiplier
-    console.log ("centsInt = ",centsInt)
+    //console.log ("centsInt = ",centsInt)
     let resultUSD = Dinero({amount: centsInt, currency: 'USD'})
-    console.log("resultUSD, =",resultUSD.toFormat("$0.00"))
-    console.log("resultUSD. =",resultUSD.toFormat("$0.00"))
+    //console.log("resultUSD, =",resultUSD.toFormat("$0.00"))
+    //console.log("resultUSD. =",resultUSD.toFormat("$0.00"))
     return resultUSD
    
 }
@@ -43,8 +43,8 @@ function calculateTotalSpendings(spendingsList) {
     spendingsList.forEach(element => {
         
         result = result.add(element.amount);
-        console.log("result foreach el amount: " + element.amount.getAmount())
-        console.log("result foreach res amount: " + result.getAmount())
+        //console.log("result foreach el amount: " + element.amount.getAmount())
+        //console.log("result foreach res amount: " + result.getAmount())
     });
     return result;
 }

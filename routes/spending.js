@@ -1,15 +1,18 @@
 const express = require('express')
 const Dinero = require('dinero.js')
 const router = express.Router()
+const multer  = require("multer");
+
+//router.use(multer({dest:"uploads"}).single("filedata"));
+
 
 const helper = require('./helper');
 
-const price = Dinero({ amount: 5000, currency: 'USD' })
 
 let list = [
-    { amount: Dinero({amount: 10000,currency: 'USD'}), type: "food", comments: "cola pizza burgir", date: new Date() },
-    { amount: Dinero({amount: 30000,currency: 'USD'}), type: "gym", comments: "gachi is life" , date: new Date() },
-    { amount: Dinero({amount: 300,currency: 'USD'}), type: "coke", comments: "mmm delicious" , date: new Date() }
+    { amount: Dinero({amount: 10000,currency: 'USD'}), type: "food", comments: "cola pizza burgir", date: new Date(), image: null },
+    { amount: Dinero({amount: 30000,currency: 'USD'}), type: "gym", comments: "gachi is life" , date: new Date(), image: 'uploads\\maxresdefault.jpg' },
+    { amount: Dinero({amount: 300,currency: 'USD'}), type: "coke", comments: "mmm delicious" , date: new Date(), image: null }
     ]; 
 
 let dailyLimit = Dinero({amount: 100000,currency: 'USD'});
@@ -21,8 +24,8 @@ let params = {
     helper
 }
 
-function addNewSpending(amount,type,comments,date) {
-    let entry = {amount,type,comments,date}
+function addNewSpending(amount,type,comments,date,image) {
+    let entry = {amount,type,comments,date,image}
     
     params.list.push(entry)
 }
@@ -50,7 +53,17 @@ router.post('/add',(req,res) => {
     console.log(comments)
     const date = new Date()
     console.log("date " + date)
-    addNewSpending(amount, spendingType, comments, date)
+
+    let filedata = req.file;
+    console.log("filedata",filedata);
+    if (!filedata) {
+        filedata = null
+    } else {
+        console.log(filedata.path);
+        filedata =filedata.path
+    }
+        
+    addNewSpending(amount, spendingType, comments, date, filedata)
     res.redirect('/')
 })
 

@@ -50,17 +50,12 @@
             
             <br><br><br>
             <div class="element-comment">
-                 <!--
-                <%# if (locals.list[i] === "BMW") { %>
-                    <img src="../public/s.jpg"  >
-                    i am saaab manasdsadsadasdasdas
-                    asdas
-                    i am saaab manasdsadsadasdasdas
-                    asdasi am saaab manasdsadsadasdasdas
-                    asdas
-                    i am saaab manasdsadsadasdasdas
-                    asdas -->
-                <%# } %>
+                
+                <% if (locals.list[i].image !== null) { %>
+                    <% console.log("img src =",locals.list[i].image.path) %>
+                    <img src="<%= locals.list[i].image %>" width="300" height="300" >
+                <% } %>
+                
                 <%= list[i].comments %>
             </div>
 
