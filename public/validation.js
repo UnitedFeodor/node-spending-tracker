@@ -5,8 +5,9 @@ function validateSpendingForm() {
     let amount = addForm.amount.value
     console.log("amount",amount)
     
-    return validateInputUSD(amount)
+    return validateInputUSD(amount,false)
 }
+//TODO negative number and 0 check
 
 function validateLimitsForm() {
     console.log("validateLimitsForm")
@@ -15,23 +16,34 @@ function validateLimitsForm() {
     let amount = limitsForm.amount.value
     console.log("amount",amount)
     
-    return validateInputUSD(amount)
+    return validateInputUSD(amount,true)
+
     
 }
 
-function validateInputUSD(amount) {
+function validateInputUSD(amount,isPositive) {
     if(!isNumeric(amount)) {
         alert("AMOUNT must be a number!")
         return false 
     }
+    if (isPositive) {
+        if (parseFloat(amount) <= 0) {
+            alert("AMOUNT must be positive!")
+            return false
+        }
+    }
 
     let arr = amount.split(".")
-    let afterDotSymbols = arr[1].length // after dot symbol amount to multiply
+    if (arr.length === 1) {
+        afterDotSymbols = 0
+    } else {
+        afterDotSymbols = arr[1].length // after dot symbol amount to multiply
+    }
     
     if (arr.length !== 1 && afterDotSymbols > 2) {
         alert("2 or less symbols after dot are allowed in AMOUNT!")
         return false
-    }
+    } 
     return true
 
 }

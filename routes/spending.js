@@ -2,6 +2,7 @@ const express = require('express')
 const Dinero = require('dinero.js')
 const router = express.Router()
 const multer  = require("multer");
+const postModel = require("../model/post");
 
 //router.use(multer({dest:"uploads"}).single("filedata"));
 
@@ -26,13 +27,27 @@ let params = {
 
 function addNewSpending(amount,type,comments,date,image) {
     let entry = {amount,type,comments,date,image}
-    
     params.list.push(entry)
 }
-router.get('/',(req,res) => {
+
+
+
+
+router.get('/', async (req,res) => {
     console.log("get /")
+    const dbPosts = await postModel.find({})
     
-    res.render('index', params)
+    dbPosts.forEach(element => {
+        addNewSpending(element.amount, element.type, element.comments, element.date, element.image)
+    });
+
+    try {
+        res.render('index', params)
+      } catch (error) {
+        response.status(500).send(error);
+      }
+
+    
 })
 
 router.get('/add',(req,res) => {
