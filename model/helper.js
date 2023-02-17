@@ -33,6 +33,10 @@ function parseUSDFromFormattedString(moneyStr) {
    
 }
 
+function dineroToFormattedNumberUSD(amount) {
+    return amount.toFormat('0.00')
+}
+
 function dineroToFormatWrapperUSD(amount) {
     return amount.toFormat('$0.00')
 }
@@ -154,5 +158,6 @@ module.exports = {
     setLimitsFromDaily : setLimitsFromDaily,
     setLimitsFromMonthly : setLimitsFromMonthly,
     parseUSDFromFormattedString : parseUSDFromFormattedString,
-    chooseLimitFuncByInput : chooseLimitFuncByInput
+    chooseLimitFuncByInput : chooseLimitFuncByInput,
+    dineroToFormattedNumberUSD : dineroToFormattedNumberUSD
 }

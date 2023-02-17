@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const PostSchema = mongoose.Schema({
     amount: {
-        type: Object //  Dinero({amount: 10000,currency: 'USD'})
+        type: String //  Dinero({amount: 10000,currency: 'USD'})
     }, 
     type: {
         type: String

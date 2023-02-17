@@ -29,6 +29,10 @@ function addNewSpending(amount,type,comments,date,image) {
     let entry = {amount,type,comments,date,image}
     params.list.push(entry)
 }
+function formNewSpending(amount,type,comments,date,image) {
+    let entry = {amount,type,comments,date,image}
+    return entry
+}
 
 
 
@@ -37,9 +41,12 @@ router.get('/', async (req,res) => {
     console.log("get /")
     const dbPosts = await postModel.find({})
     
+
+    
     dbPosts.forEach(element => {
-        addNewSpending(element.amount, element.type, element.comments, element.date, element.image)
-    });
+        let dineroAmount = helper.parseUSDFromFormattedString(element.amount)
+        addNewSpending(dineroAmount, element.type, element.comments, element.date, element.image)
+    }); 
 
     try {
         res.render('index', params)
@@ -56,7 +63,7 @@ router.get('/add',(req,res) => {
     res.render('add', params)
 })
 
-router.post('/add',(req,res) => {
+router.post('/add', async (req,res) => {
     console.log("post /add")
     console.log(req.body.amount + " = req body amount")
 
@@ -78,8 +85,19 @@ router.post('/add',(req,res) => {
         filedata =filedata.path
     }
         
-    addNewSpending(amount, spendingType, comments, date, filedata)
-    res.redirect('/')
+    //addNewSpending(amount, spendingType, comments, date, filedata)
+
+    let newPost = formNewSpending(helper.dineroToFormattedNumberUSD(amount), spendingType, comments, date, filedata)
+    let post = new postModel(newPost)
+    //post.markModified('amount')
+    try {
+        await post.save();
+        res.redirect('/')
+      } catch (error) {
+        response.status(500).send(error);
+      }
+
+    
 })
 
 router.get('/limits',(req,res) => {
