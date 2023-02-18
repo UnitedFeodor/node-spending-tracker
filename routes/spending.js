@@ -4,7 +4,8 @@ const router = express.Router()
 const multer  = require("multer");
 const postModel = require("../model/post");
 const mongoose = require('mongoose')
-
+const fs = require('fs');
+const path = require('path');
 //router.use(multer({dest:"uploads"}).single("filedata"));
 
 
@@ -79,15 +80,18 @@ router.post('/', async (req,res) => { // delete
     console.log("id from req body: ",req.body._id)*/
 
     const _id = new mongoose.Types.ObjectId(req.body._id)
+    const image = req.body.image
+    if (image !== null) {
+        
+        const filePath = path.join(__dirname,'..',image) 
+        console.log(filePath)
+        fs.unlinkSync(filePath)
+    }
 
-    /*
-    date = new Date(date)
-    
-    const element = {_id,amount, type, comments, date, image}
-    console.log("search",element) */
    
     try {
-        await postModel.deleteOne(_id)
+        await postModel.deleteOne(_id)  
+        //await postModel.findByID(_id)
         console.log(await postModel.countDocuments(_id))// 0
         res.redirect('/')
     } catch (error) {
