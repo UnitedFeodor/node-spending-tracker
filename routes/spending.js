@@ -58,6 +58,11 @@ router.get('/', async (req,res) => {
     }); 
 
     //listToShow = listToShow.concat(list)
+    listToShow.sort(function(a,b){
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return b.date - a.date;
+      });
 
     params.list = listToShow
     try {
