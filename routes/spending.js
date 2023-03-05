@@ -81,7 +81,7 @@ router.post('/', async (req,res) => { // delete
 
     const _id = new mongoose.Types.ObjectId(req.body._id)
     const image = req.body.image
-    if (image !== null) {
+    if (image !== null && image !=='') {
         
         const filePath = path.join(__dirname,'..',image) 
         console.log(filePath)
@@ -162,9 +162,10 @@ router.post('/limits',(req,res) => {
     res.redirect('/')
 })
 
+/*
 
 router.get('/:id',(req,res) => {
-    res.send(`get task with id ${req.params.id}`)
+    res.send(`get page with id ${req.params.id}`)
 })
-
+*/
 module.exports = router
